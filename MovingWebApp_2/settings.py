@@ -25,7 +25,7 @@ SECRET_KEY = '+hea@dx!cgm0t$@m+x@nlv!g@idqm!hny)-!+)56=58t8odyn5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['movingwebapp.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['movingwebapp.us-west-2.elasticbeanstalk.com', 'localhost']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mainApp',
 ]
 
 MIDDLEWARE = [
