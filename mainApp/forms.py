@@ -21,14 +21,12 @@ class BoxForm(ModelForm):
 class BoxItemForm(ModelForm):
     class Meta:
         model = BoxItem
-        fields = ('box', 'item_name', 'item_quantity')
+        fields = ('item_name', 'item_quantity')
         labels = {
-            'box': 'Box Number',
             'item_name': 'Item Name',
             'item_quantity': 'Item Quantity',
         }
         widgets = {
-            'box': forms.Select(attrs={'class':'form-control', 'placeholder':'Box Number'}),
             'item_name': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Item Name'}),
             'item_quantity': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Item Quantity'}),
         }
