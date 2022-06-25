@@ -1,6 +1,7 @@
 {% extends 'mainApp/base.html'%}
 
 {% block content %}
+{% if user.is_authenticated %}
     
     <h1>Update Item</h1>
     <br/>
@@ -11,6 +12,5 @@
         <input type="submit" value="Update" class="btn btn-outline-primary">
         
     
-    
-    
+{% endif %}
 {% endblock %}

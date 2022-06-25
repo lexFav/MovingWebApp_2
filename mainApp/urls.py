@@ -17,4 +17,5 @@ urlpatterns = [
       path('add_item/<box_id>', views.add_item, name="add-item"),
       path('edit_item/<item_id>', views.edit_item, name="edit-item"),
       path('delete_item/<item_id>', views.delete_item, name="delete-item"),
+      path('search_boxes', views.search_boxes, name="search-boxes"),
 ]

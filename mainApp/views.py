@@ -24,6 +24,7 @@ def delete_item(request, item_id):
     item.delete()
     return redirect('box-list')
     
+
 def add_item(request, box_id):
     box = Box.objects.get(pk=box_id)
     if request.method == "POST":
@@ -57,6 +58,23 @@ def edit_box(request, box_id):
     return render(request, 'mainApp/edit_box.html',
     {'box': box,
     'form': form})
+
+
+def search_boxes(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        boxes = Box.objects.filter(box_number__contains=searched)
+        box_Item_list = BoxItem.objects.all().order_by('item_creation_date')
+        
+        return render(request,
+        'mainApp/search_boxes.html',
+        {'searched': searched,
+        'boxes': boxes,
+        'box_Item_list': box_Item_list})
+    else:
+        return render(request,
+        'mainApp/search_boxes.html',
+        {})
 
 
 def create_box(request):
