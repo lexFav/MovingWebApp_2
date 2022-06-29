@@ -1,7 +1,8 @@
 {% extends 'mainApp/base.html'%}
-
 {% block content %}
-    <center>
+{% load static %}
+{% if user.is_authenticated %}
+    
     <h1>Create Box</h1>
     <br/><br/>
     {% if submitted %}
@@ -9,14 +10,37 @@
 
     {% else %}
 
+    
         <form action="" method="POST">
             {% csrf_token %}
 
-            {{ form.as_p }}
+            <div class="form-floating mb-3">
+                <i class="icon fa-solid fa-box-archive fa-lg"></i>
+                <input name="box_number" type="text" class="form-control" placeholder="Number" id="number">
+                <label for="number">Box Number</label>
+            </div>
+            <div class="form-floating mb-3">
+                <i class="icon fa-solid fa-message fa-lg"></i>
+                <textarea name="box_description" rows="1" class="form-control" placeholder="Description" id="description"></textarea>
+                <label for="description">Description</label>
+            </div>
+            <div class="form-floating mb-3">
+                <i class="icon fa-solid fa-location-crosshairs fa-lg"></i>
+                <input name="box_location" type="text" class="form-control" placeholder="Location" id="location">
+                <label for="location">Location</label>
+            </div>
 
-            <input type="submit" value="Submit" class="btn btn-outline-secondary">
-
+                
+                <button type="submit" value="Submit" class="btn btn-outline-secondary">
+                <i class="fa-solid fa-circle-check"></i> Submit
+                </button>
         </form>
+        
         {% endif %}
-    </center>
+    
+
+{% else %}
+<h3>Sorry, You Are Not Able To View This Page(I Explained This On The Home Page, Try To Keep Up).</h3>
+{% endif %}
+
 {% endblock %}

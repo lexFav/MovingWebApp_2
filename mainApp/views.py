@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from .models import Box, BoxItem
 from .forms import BoxForm, BoxItemForm
-from django.http import HttpResponseRedirect
+
 
 
 def edit_item(request, item_id):
