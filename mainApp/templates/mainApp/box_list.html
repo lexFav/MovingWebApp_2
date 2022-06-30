@@ -12,13 +12,13 @@
 <div class="card">
     <div class="card-header">
         
-        <h5 class="card-title">Box # {{ box.box_number }}<br/></h5> <strong><i class="fa-solid fa-location-crosshairs"></i> Location: </strong>{{ box.box_location }}   <strong>Date <i class="fa-solid fa-clock"></i> : </strong> {{ box.box_creation_date }} <br/> <strong><i class="fa-solid fa-message"></i> Description: </strong>{{ box.box_description }}
+        <h5 class="card-title" id="courier">Box #{{ box.box_number }}<br/></h5> <strong class="courier"><i class="fa-solid fa-location-crosshairs"></i> Location: </strong>{{ box.box_location }}   <strong class="courier">Date <i class="fa-solid fa-clock"></i> : </strong> {{ box.box_creation_date }} <br/> <strong class="courier"><i class="fa-solid fa-message"></i> Description: </strong>{{ box.box_description }}
         
             
     </div>
-    <div class="card-body">
+    <div class="card-body" id="courier">
 
-        <ul>
+        <ol>
     {% if user.is_authenticated %}
       {% for item in box_Item_list %}
           {% if item.box.id == box.id %}
@@ -41,7 +41,7 @@
         {% endif %}
       {% endfor %}
     {% endif %}
-        </ul>
+        </ol>
 
         </p>
     </div>

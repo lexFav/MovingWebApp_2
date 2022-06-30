@@ -1,19 +1,31 @@
 {% extends 'mainApp/base.html'%}
-
 {% block content %}
+{% load static %}
 {% if user.is_authenticated %}
     <center>
-    <h1>Add Item</h1>
+    <h1 class="courier">Add Item</h1>
     <br/><br/>
 
-        <form action="" method="POST">
-            {% csrf_token %}
+    <form method="POST">
+        {% csrf_token %}
 
-            {{ form.as_p }}
+        <div class="form-floating mb-3">
+            <i class="icon fa-solid fa-file-signature fa-lg"></i>
+            <input type="text" name="item_name" class="form-control" placeholder="Name" id="name">
+            <label for="name" class="courier">Name</label>
+        </div>
 
-            <input type="submit" value="Submit" class="btn btn-outline-secondary">
+        <div class="form-floating mb-3">  
+            <i class="icon fa-solid fa-list-ol fa-lg"></i>     
+            <input type="text" name="item_quantity" class="form-control" placeholder="Quantity" id="quantity">
+            <label for="quantity" class="courier">Quantity</label>
+        </div> 
 
-        </form>
+        <button type="submit" value="Submit" class="btn btn-outline-secondary" id="courier">
+            <i class="fa-solid fa-circle-check"></i> Submit
+        </button>
+
+    </form>
     </center>
 {% else %}
 <h3>Sorry, You Are Not Able To View This Page(I Explained This On The Home Page, Try To Keep Up).</h3>

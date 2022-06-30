@@ -1,19 +1,19 @@
 {% extends 'mainApp/base.html'%}
-
 {% block content %}
+{% load static %}
     <center>
-    <h1>Home</h1>
+    <h1 class="courier">Home</h1>
     <br/><br/>
 
     <p>
-        <button class="btn btn-outline-info btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
-          <code class="language-html">Welcome to the Home page!<br/>(I recommend clicking this if you are new)</code>
+        <button class="btn btn-outline-info btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" id="courier">
+          Welcome to the Home page!<br/>(I recommend clicking this if you are new)
         </button>
       </p>
       <div style="min-height: 120px;">
         <div class="collapse collapse-horizontal" id="collapseWidthExample">
           <div class="card card-body" style="width: 300px;">
-            <p class="text-primary text-opacity-5 fw-bold font-monospace">
+            <p class="text-primary text-opacity-5 fw-bold" id="courier">
               <strong>
             Directions:
             <br/>First you should login/register (otherwise, you couldn't do much <i class="fa-solid fa-face-smile-wink"></i>).

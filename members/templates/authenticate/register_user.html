@@ -20,7 +20,30 @@
         <form action="{% url 'register_user' %}" method=POST>
             {% csrf_token %}
 
-            {{ form.as_p }}
+            <form action="/members/register_user" method=POST>
+                <input type="hidden" name="csrfmiddlewaretoken" value="lHUvwMEb0svCJ3bVcaJORLmJ7pyU7ypBboADjiXn3OvEPOYAPQovYxmZOdUfPjOn">
+    
+                <label for="id_username">Username:</label>
+                <input type="text" name="username" maxlength="150" autofocus class="form-control" required id="id_username"> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                <label for="id_first_name">First name:</label>
+                <input type="text" name="first_name" class="form-control" maxlength="50" required id="id_first_name">
+                <label for="id_last_name">Last name:</label>
+                <input type="text" name="last_name" class="form-control" maxlength="50" required id="id_last_name">
+                <label for="id_email">Email:</label>
+                <input type="email" name="email" class="form-control" required id="id_email">
+                <label for="id_password1">Password:</label>
+                <input type="password" name="password1" class="form-control" required id="id_password1"> <span class="helptext"><ul><li>Your password can&#39;t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can&#39;t be a commonly used password.</li><li>Your password can&#39;t be entirely numeric.</li></ul></span>
+                <label for="id_password2">Password confirmation:</label>
+                <input type="password" name="password2" class="form-control" required id="id_password2"> <span class="helptext">Enter the same password as before, for verification.</span>
+                    
+    
+                    
+                  
+                
+    <br/><br/>
+                <input type="submit" value="Submit" class="btn btn-secondary">
+    
+            </form>
                 
 
                 
