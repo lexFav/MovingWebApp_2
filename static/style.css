@@ -1,0 +1,40 @@
+body {
+    background-color: #f4f4f4;
+}
+
+.form-floating {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    top: calc(50%);
+    left: 1.25rem;
+}
+
+.form-floating label, .form-floating .form-control {
+    left: .5rem;
+    padding-left: 3.5rem;
+}
+
+.icon-textarea {
+    position: absolute;
+    top: 1.8rem;
+    left: 1.25rem;
+} 
+
+h1,h2,h3,h4,h5,h6,p {
+    font-weight: bold;
+}
+
+.courier {
+    font-family: Courier;
+}
+
+#courier {
+    font-family: Courier;
+}
+
+.form-floating {
+    position: relative;
+}

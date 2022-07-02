@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from UnicoWebApp import settings
+from django.contrib.staticfiles.urls import static
 
 urlpatterns = [
       # Path Converters
@@ -19,3 +21,6 @@ urlpatterns = [
       path('delete_item/<item_id>', views.delete_item, name="delete-item"),
       path('search_boxes', views.search_boxes, name="search-boxes"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
