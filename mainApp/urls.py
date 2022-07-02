@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from UnicoWebApp import settings
+from MovingWebApp import settings
 from django.contrib.staticfiles.urls import static
 
 urlpatterns = [
