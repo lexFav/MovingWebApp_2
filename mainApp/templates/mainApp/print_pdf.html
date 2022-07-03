@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table, th, td {
+  border: 1px solid black;
+  padding: 3px;
+  vertical-align: top;
+}
+
+ul {
+    list-style-type: none;
+}
+#textsize{
+    font-size:2em;
+}
+li{
+    font-size:medium;
+}
+
+    </style>
+</head>
+<body>
+
+ <table style="width:100%" >
+    <tbody >
+    {% for box in box_list %}
+        <tr style="height:340px"  >
+            <td>
+                <ul>
+                    <li id="textsize"><strong>Box # {{ box.box_number }} </strong> </li>
+                    <li><strong>Location:</strong> {{ box.box_location }}</li>
+                    <li><strong>creation_date:</strong>  {{ box.box_creation_date }}</li>
+                    <li><strong>Description: </strong> {{ box.box_description }}</li>
+                </ul>
+                <ol>
+                {% for item in box_Item_list %}
+                {% if item.box.id == box.id %}
+                    <li>{{ item.item_name }} </li> 
+                   {% endif %}
+                {% endfor %}
+                </ol>
+                </td>
+                <td>
+                    <ul>
+                        <li id="textsize"><strong>Box # {{ box.box_number }} </strong> </li>
+                        <li><strong>Location:</strong> {{ box.box_location }}</li>
+                        <li><strong>creation_date:</strong>  {{ box.box_creation_date }}</li>
+                        <li><strong>Description: </strong> {{ box.box_description }}</li>
+                    </ul>
+                    <ol>
+                    {% for item in box_Item_list %}
+                    {% if item.box.id == box.id %}
+                        <li>{{ item.item_name }} </li> 
+                       {% endif %}
+                    {% endfor %}
+                    </ol>
+                    </td>
+                    <td>
+                        <ul>
+                            <li id="textsize"><strong>Box # {{ box.box_number }} </strong> </li>
+                            <li><strong>Location:</strong> {{ box.box_location }}</li>
+                            <li><strong>creation_date:</strong>  {{ box.box_creation_date }}</li>
+                            <li><strong>Description: </strong> {{ box.box_description }}</li>
+                        </ul>
+                        <ol>
+                        {% for item in box_Item_list %}
+                        {% if item.box.id == box.id %}
+                            <li>{{ item.item_name }} </li> 
+                           {% endif %}
+                        {% endfor %}
+                        </ol>
+                        </td>
+            </tr>
+
+
+{% endfor %} 
+</tbody>
+</table>
+    
+</body>
+</html>
+
+
+
+
+

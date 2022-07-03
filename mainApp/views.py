@@ -2,14 +2,45 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from .models import Box, BoxItem
 from .forms import BoxForm, BoxItemForm
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.views.generic import ListView
+
+def print_pdf(request):
+    if request.method == "POST":
+        searched = request.POST['searched_2'].split(",")
+        box_list = Box.objects.filter(box_number__in= searched)
+        
+    box_list = Box.objects.filter(box_number__in= searched)
+    
+    # box_list = Box.objects.all().order_by('box_number')
+    box_Item_list = BoxItem.objects.all().order_by('item_creation_date')
+    template_path = 'mainApp/print_pdf.html'
+    context = {'box_list': box_list,'box_Item_list': box_Item_list}
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    # if downloade
+    # response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    #else
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
 
 
 
 def edit_item(request, item_id):
     item = BoxItem.objects.get(pk=item_id)
-
     form = BoxItemForm(request.POST or None, instance=item)
-
     if form.is_valid():
         form.save()
         return redirect('box-list')
@@ -62,8 +93,8 @@ def edit_box(request, box_id):
 
 def search_boxes(request):
     if request.method == "POST":
-        searched = request.POST['searched']
-        boxes = Box.objects.filter(box_number__contains=searched)
+        searched = request.POST['searched'].split(",")
+        boxes = Box.objects.filter(box_number__in= searched)
         box_Item_list = BoxItem.objects.all().order_by('item_creation_date')
         
         return render(request,
@@ -73,8 +104,7 @@ def search_boxes(request):
         'box_Item_list': box_Item_list})
     else:
         return render(request,
-        'mainApp/search_boxes.html',
-        {})
+        'mainApp/search_boxes.html',{})
 
 
 def create_box(request):

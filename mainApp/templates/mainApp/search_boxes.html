@@ -2,6 +2,9 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+
+<div class="row g-3">
+  <div class="col-12 col-md-6 col-lg-3 d-flex align-items-stretch">
 <div class="card">
     <div class="card-header">           
       {% if searched %}
@@ -12,18 +15,36 @@
     </div>
     <div class="card-body">
 
-    <form method="POST" action="{% url 'search-boxes' %}">
-        {% csrf_token %}
-
+    <form method="POST" action="{% url 'search-boxes' %}"  id="id_01">
+      {% csrf_token %}
         <input class="form-control me-2" type="search" placeholder="Search Boxes" aria-label="Search" name="searched">
         <br/>
-        <button class="btn btn-outline-success" type="submit">
+        <button form="id_01" class="btn btn-outline-success" type="submit" >
           <i class="fa-solid fa-magnifying-glass"></i> Search
         </button>
     </form>
+  </div>
+</div>
+</div>
+    <br>
+    <div class="col-12 col-md-6 col-lg-3 d-flex align-items-stretch">
+    <div class="card">
+      <div class="card-header"> 
+        Print Label
+      </div>
+      <div class="card-body">
 
-</div></div>
+    <form method="POST" action="{% url 'print-pdf' %}"  id="id_02" >
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" placeholder="Search Boxes To Print" aria-label="Print Label" name="searched_2">
+      <br/>
+        <button form="id_02" type="submit" value="Print" class="btn btn-outline-secondary" >Print</button>
+    </form>
+  </div>
+  </div>
 
+</div>
+</div>
 
     
             <br/>
