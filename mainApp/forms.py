@@ -13,7 +13,7 @@ class BoxForm(ModelForm):
         }
         widgets = {
             'box_number': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Box Number'}),
-            'box_description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Box Description'}),
+            'box_description': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Box Description', 'rows':'1'}),
             'box_location': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Box Location'}),
         }
 
