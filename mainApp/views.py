@@ -7,14 +7,32 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.views.generic import ListView
 
+def search_box_item(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        box_items = BoxItem.objects.filter(item_name__icontains = searched)
+        
+        return render(request,
+        'mainApp/search_box_item.html',
+        {'searched': searched,
+        'box_items': box_items,})
+    else:
+        return render(request,
+        'mainApp/search_box_item.html',
+        {})
+
+
 def print_pdf(request):
     if request.method == "POST":
         searched = request.POST['searched_2'].split(",")
-        box_list = Box.objects.filter(box_number__in= searched)
-        
-    box_list = Box.objects.filter(box_number__in= searched)
-    
-    # box_list = Box.objects.all().order_by('box_number')
+        searched_blank = request.POST['searched_2']
+
+        if searched_blank:
+            searched = request.POST['searched_2'].split(",")
+            box_list = Box.objects.filter(box_number__in= searched)
+        else:
+            box_list = Box.objects.all().order_by('box_number')
+
     box_Item_list = BoxItem.objects.all().order_by('item_creation_date')
     template_path = 'mainApp/print_pdf.html'
     context = {'box_list': box_list,'box_Item_list': box_Item_list}
@@ -94,7 +112,13 @@ def edit_box(request, box_id):
 def search_boxes(request):
     if request.method == "POST":
         searched = request.POST['searched'].split(",")
-        boxes = Box.objects.filter(box_number__in= searched)
+        searched_blank = request.POST['searched']
+
+        if searched_blank:
+            boxes = Box.objects.filter(box_number__in=searched)
+        else:
+            boxes = Box.objects.all().order_by('box_number')
+            
         box_Item_list = BoxItem.objects.all().order_by('item_creation_date')
         
         return render(request,

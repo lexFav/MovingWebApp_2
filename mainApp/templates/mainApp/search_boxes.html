@@ -1,12 +1,13 @@
 {% extends 'mainApp/base.html' %}
 
 {% block content %}
+{% load static %}
 {% if user.is_authenticated %}
 
 <div class="row g-3">
   <div class="col-12 col-md-6 col-lg-3 d-flex align-items-stretch">
 <div class="card">
-    <div class="card-header">           
+    <div class="card-header courier">           
       {% if searched %}
         You Searched For {{ searched }}
     {% else %}
@@ -17,9 +18,9 @@
 
     <form method="POST" action="{% url 'search-boxes' %}"  id="id_01">
       {% csrf_token %}
-        <input class="form-control me-2" type="search" placeholder="Search Boxes" aria-label="Search" name="searched">
+        <input class="form-control me-2 courier" type="search" placeholder="Search Boxes" aria-label="Search" name="searched">
         <br/>
-        <button form="id_01" class="btn btn-outline-success" type="submit" >
+        <button form="id_01" class="btn btn-outline-success courier" type="submit">
           <i class="fa-solid fa-magnifying-glass"></i> Search
         </button>
     </form>
@@ -29,16 +30,18 @@
     <br>
     <div class="col-12 col-md-6 col-lg-3 d-flex align-items-stretch">
     <div class="card">
-      <div class="card-header"> 
+      <div class="card-header courier"> 
         Print Label
       </div>
       <div class="card-body">
 
     <form method="POST" action="{% url 'print-pdf' %}"  id="id_02" >
       {% csrf_token %}
-      <input class="form-control me-2" type="search" placeholder="Search Boxes To Print" aria-label="Print Label" name="searched_2">
+      <input class="form-control me-2 courier" type="search" placeholder="Search Boxes To Print" aria-label="Print Label" name="searched_2">
       <br/>
-        <button form="id_02" type="submit" value="Print" class="btn btn-outline-secondary" >Print</button>
+        <button form="id_02" type="submit" value="Print" class="btn btn-outline-dark courier">
+          <i class="fa-solid fa-print"></i> Print
+        </button>
     </form>
   </div>
   </div>
@@ -50,15 +53,15 @@
             <br/>
             {% for box in boxes %}
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header courier">
                         
-                      <h5 class="card-title">Box # {{ box.box_number }}<br/></h5> <strong><i class="fa-solid fa-location-crosshairs"></i> Location: </strong>{{ box.box_location }}   <strong>Date <i class="fa-solid fa-clock"></i> : </strong> {{ box.box_creation_date }} <br/> <strong><i class="fa-solid fa-message"></i> Description: </strong>{{ box.box_description }}
+                      <h5 class="card-title">Box # {{ box.box_number }}<br/></h5> <strong><i class="fa-solid fa-location-crosshairs"></i> Location: </strong>{{ box.box_location }} | <strong><i class="fa-solid fa-clock"></i> Date:</strong> {{ box.box_creation_date }} <br/> <strong><i class="fa-solid fa-message"></i> Description: </strong>{{ box.box_description }}
                         
                             
                     </div>
-                    <div class="card-body">
+                    <div class="card-body courier">
                 
-                        <ul>
+                        <ol>
                     {% if user.is_authenticated %}
                       {% for item in box_Item_list %}
                           {% if item.box.id == box.id %}
@@ -80,7 +83,7 @@
                         {% endif %}
                       {% endfor %}
                       {% endif %}
-                        </ul>
+                        </ol>
                 
                         </p>
                     </div>

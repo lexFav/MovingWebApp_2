@@ -2,6 +2,11 @@ body {
     background-color: #f4f4f4;
 }
 
+h1,h2,h3,h4,h5,h6,p {
+    font-weight: bold;
+}
+
+/* Icon and form floating stuff */
 .form-floating {
     position: relative;
 }
@@ -21,20 +26,13 @@ body {
     position: absolute;
     top: 1.8rem;
     left: 1.25rem;
-} 
-
-h1,h2,h3,h4,h5,h6,p {
-    font-weight: bold;
 }
 
+/* Other stuff */
 .courier {
     font-family: Courier;
 }
 
 #courier {
     font-family: Courier;
-}
-
-.form-floating {
-    position: relative;
 }

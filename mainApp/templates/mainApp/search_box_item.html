@@ -1,0 +1,53 @@
+{% extends 'mainApp/base.html' %}
+
+{% block content %}
+{% load static %}
+{% if user.is_authenticated %}
+
+<div class="row g-3">
+  <div class="col-12 col-md-6 col-lg-3 d-flex align-items-stretch">
+        <div class="card">
+            <div class="card-header courier">           
+                {% if searched %}
+                    You Searched For {{ searched }}
+                {% else %}
+                    Search Item...
+                {% endif %}
+            </div>
+            <div class="card-body courier">
+                <form method="POST" action="{% url 'search-box-item' %}"  id="id_01">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Search Item" aria-label="Search" name="searched">
+                    <br/>
+                    <button form="id_01" class="btn btn-outline-primary" type="submit" >
+                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+            <br/>
+            <div class="container courier">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <ol class="list-group list-group-numbered">
+                            {% for item in box_items %}
+                                <li class="list-group-item list-group-item-action list-group-item-secondary"><i class="fa-brands fa-expeditedssl"></i> <strong>Item:</strong> {{ item.item_name }} | <i class="fa-solid fa-boxes-stacked"></i> <strong>Box Number:</strong> {{ item.box.box_number }}</li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+
+{% else %}
+<h3>Sorry, You Are Not Able To View This Page(I Explained This On The Home Page, Try To Keep Up).</h3>
+{% endif %}
+
+
+
+    
+{% endblock %}

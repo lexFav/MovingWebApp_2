@@ -13,7 +13,7 @@ class Box(models.Model):
 class BoxItem(models.Model):
     box = models.ForeignKey(Box, blank=True, null=True, on_delete=models.CASCADE)
     item_name = models.CharField('Item Name', max_length=300)
-    item_quantity = models.CharField('Item Quantity', max_length=50)
+    item_quantity = models.CharField('Item Quantity', max_length=50, default=1)
     item_creation_date = models.DateTimeField('Item Date', blank=True)
 
     def __str__(self):

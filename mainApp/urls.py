@@ -21,6 +21,7 @@ urlpatterns = [
       path('delete_item/<item_id>', views.delete_item, name="delete-item"),
       path('search_boxes', views.search_boxes, name="search-boxes"),
       path('print_pdf', views.print_pdf, name="print-pdf"),
+      path('search_box_item', views.search_box_item, name="search-box-item"),
 ]
 
 if settings.DEBUG:
